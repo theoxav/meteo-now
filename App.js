@@ -1,12 +1,22 @@
 import { ImageBackground, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { useFonts } from 'expo-font';
 
 import Home from './pages/Home/Home';
 import backgroundImg from './assets/background.png';
 
 import { s } from './App.style';
+import AlataRegular from './assets/fonts/Alata-Regular.ttf';
+
+if (__DEV__) {
+  require('./ReactotronConfig');
+}
 
 export default function App() {
+  const [isFontLoaded] = useFonts({
+    AlataRegular: AlataRegular,
+  });
+
   return (
     <ImageBackground
       source={backgroundImg}
@@ -15,7 +25,7 @@ export default function App() {
     >
       <SafeAreaProvider>
         <SafeAreaView style={s.container}>
-          <Home />
+          {isFontLoaded ? <Home /> : null}
         </SafeAreaView>
       </SafeAreaProvider>
     </ImageBackground>
