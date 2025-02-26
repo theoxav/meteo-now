@@ -7,8 +7,11 @@ import { useFetchWeather } from '@/hooks/useFetchWeather.js';
 import { useFetchCity } from '@/hooks/useFetchCity.js';
 import { useLocation } from '@/hooks/useLocation.js';
 import MeteoAdvanced from '@/components/MeteoAdvanced/MeteoAdvanced.jsx';
+import { useNavigation } from '@react-navigation/native';
+import Container from '@/components/ui/Container/Container.jsx';
 
 export default function HomeScreen() {
+  const navigation = useNavigation();
   const coords = useLocation();
   const weather = useFetchWeather(coords);
   const city = useFetchCity(coords);
@@ -19,13 +22,18 @@ export default function HomeScreen() {
     return time || 'N/A';
   };
 
+  const navigateToForecastScreen = () => {
+    navigation.navigate('Forecast');
+  };
+
   return currentWeather ? (
-    <>
+    <Container>
       <View style={s.meteo_basic}>
         <MeteoBasic
           temperature={Math.round(currentWeather?.temperature)}
           city={city}
           interpretation={getWeatherInterpretation(currentWeather?.weathercode)}
+          onPress={navigateToForecastScreen}
         />
       </View>
       <View style={s.searchbar}></View>
@@ -36,6 +44,6 @@ export default function HomeScreen() {
           dawn={getSunTime('sunrise')}
         />
       </View>
-    </>
+    </Container>
   ) : null;
 }

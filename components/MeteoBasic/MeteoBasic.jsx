@@ -1,10 +1,15 @@
-import { Image, View } from 'react-native';
+import { Image, TouchableOpacity, View } from 'react-native';
 import Txt from '@/components/ui/Txt/Txt';
 
 import { s } from './MeteoBasic.style.js';
 import Clock from '@/components/Clock/Clock.jsx';
 
-export default function MeteoBasic({ temperature, city, interpretation }) {
+export default function MeteoBasic({
+  onPress,
+  temperature,
+  city,
+  interpretation,
+}) {
   return (
     <>
       <View style={s.clock}>
@@ -16,7 +21,9 @@ export default function MeteoBasic({ temperature, city, interpretation }) {
       <Txt style={s.weather_label}>{interpretation.label}</Txt>
 
       <View style={s.temperature_box}>
-        <Txt style={s.temperature}>{temperature}°C</Txt>
+        <TouchableOpacity onPress={onPress}>
+          <Txt style={s.temperature}>{temperature}°C</Txt>
+        </TouchableOpacity>
         <Image style={s.image} source={interpretation.image} />
       </View>
     </>
