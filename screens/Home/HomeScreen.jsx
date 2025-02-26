@@ -2,13 +2,13 @@ import { View } from 'react-native';
 import { getWeatherInterpretation } from '@/utils/meteo.js';
 
 import MeteoBasic from '@/components/MeteoBasic/MeteoBasic.jsx';
-import { s } from './Home.style.js';
+import { s } from './HomeScreen.style.js';
 import { useFetchWeather } from '@/hooks/useFetchWeather.js';
 import { useFetchCity } from '@/hooks/useFetchCity.js';
 import { useLocation } from '@/hooks/useLocation.js';
 import MeteoAdvanced from '@/components/MeteoAdvanced/MeteoAdvanced.jsx';
 
-export default function Home() {
+export default function HomeScreen() {
   const coords = useLocation();
   const weather = useFetchWeather(coords);
   const city = useFetchCity(coords);
