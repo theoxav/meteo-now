@@ -1,11 +1,12 @@
 import { Text, View } from 'react-native';
-import { getWeatherInterpretation } from '../../utils/meteo.js';
+import { getWeatherInterpretation } from '@/utils/meteo.js';
 
-import MeteoBasic from '../../components/MeteoBasic/MeteoBasic.jsx';
+import MeteoBasic from '@/components/MeteoBasic/MeteoBasic.jsx';
 import { s } from './Home.style.js';
-import { useFetchWeather } from '../../hooks/useFetchWeather.js';
-import { useFetchCity } from '../../hooks/useFetchCity.js';
-import { useLocation } from '../../hooks/useLocation.js';
+import { useFetchWeather } from '@/hooks/useFetchWeather.js';
+import { useFetchCity } from '@/hooks/useFetchCity.js';
+import { useLocation } from '@/hooks/useLocation.js';
+import MeteoAdvanced from '@/components/MeteoAdvanced/MeteoAdvanced.jsx';
 
 export default function Home() {
   const coords = useLocation();
@@ -23,7 +24,9 @@ export default function Home() {
         />
       </View>
       <View style={s.searchbar}></View>
-      <View style={s.meteo_advanced}></View>
+      <View style={s.meteo_advanced}>
+        <MeteoAdvanced />
+      </View>
     </>
   ) : null;
 }

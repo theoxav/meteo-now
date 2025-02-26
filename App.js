@@ -1,6 +1,6 @@
-import { ImageBackground, Text, View } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
+import { ImageBackground } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import Home from './pages/Home/Home';
 import backgroundImg from './assets/background.png';

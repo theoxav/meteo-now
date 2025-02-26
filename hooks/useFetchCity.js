@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { MeteoAPI } from '../api/meteo';
+import { MeteoAPI } from '@/api/meteo';
 
 export const useFetchCity = (coords) => {
   const [city, setCity] = useState(null);

@@ -1,8 +1,8 @@
 import { Image, View } from 'react-native';
-import Txt from '../ui/Txt/Txt';
+import Txt from '@/components/ui/Txt/Txt';
 
 import { s } from './MeteoBasic.style.js';
-import Clock from '../Clock/Clock.jsx';
+import Clock from '@/components/Clock/Clock.jsx';
 
 export default function MeteoBasic({ temperature, city, interpretation }) {
   return (

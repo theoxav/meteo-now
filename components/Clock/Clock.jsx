@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { nowToHHMM } from '../../utils/date.js';
-import Txt from '../ui/Txt/Txt.jsx';
+import { nowToHHMM } from '@/utils/date.js';
+import Txt from '@/components/ui/Txt/Txt.jsx';
 
 import { s } from './Clock.style.js';
 
