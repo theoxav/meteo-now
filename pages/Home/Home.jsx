@@ -6,13 +6,14 @@ import {
   requestForegroundPermissionsAsync,
 } from 'expo-location';
 import { useEffect, useState } from 'react';
-import { MeteoAPI } from '../../services/meteo.js';
-import Txt from '../../components/Txt/Txt.jsx';
-import { Size } from '../../constants/Size.js';
+import MeteoBasic from '../../components/MeteoBasic/MeteoBasic.jsx';
+import { getWeatherInterpretation } from '../../services/meteo-services.js';
+import { MeteoAPI } from '../../api/meteo.js';
 
 export default function Home() {
   const [coords, setCoords] = useState(null);
   const [weather, setWeather] = useState(null);
+  const currentWeather = weather?.current_weather;
 
   const getUserCoords = async () => {
     let { status } = await requestForegroundPermissionsAsync();
@@ -43,13 +44,17 @@ export default function Home() {
     }
   }, [coords]);
 
-  return (
+  return currentWeather ? (
     <>
       <View style={s.meteo_basic}>
-        <Txt style={{ fontSize: Size.XL }}>Hello</Txt>
+        <MeteoBasic
+          temperature={Math.round(currentWeather?.temperature)}
+          city="Todo"
+          interpretation={getWeatherInterpretation(currentWeather?.weathercode)}
+        />
       </View>
       <View style={s.searchbar}></View>
       <View style={s.meteo_advanced}></View>
     </>
-  );
+  ) : null;
 }
