@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { getWeatherInterpretation } from '@/utils/meteo.js';
 
 import MeteoBasic from '@/components/MeteoBasic/MeteoBasic.jsx';
@@ -14,6 +14,11 @@ export default function Home() {
   const city = useFetchCity(coords);
   const currentWeather = weather?.current_weather;
 
+  const getSunTime = (type) => {
+    const time = weather?.daily?.[type]?.[0]?.split('T')[1];
+    return time || 'N/A';
+  };
+
   return currentWeather ? (
     <>
       <View style={s.meteo_basic}>
@@ -25,7 +30,11 @@ export default function Home() {
       </View>
       <View style={s.searchbar}></View>
       <View style={s.meteo_advanced}>
-        <MeteoAdvanced />
+        <MeteoAdvanced
+          wind={currentWeather?.windspeed}
+          dusk={getSunTime('sunset')}
+          dawn={getSunTime('sunrise')}
+        />
       </View>
     </>
   ) : null;

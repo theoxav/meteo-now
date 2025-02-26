@@ -1,6 +1,6 @@
 export const Size = {
-  S: 8,
-  M: 16,
+  S: 15,
+  M: 20,
   L: 30,
   XL: 60,
   XXL: 90,
