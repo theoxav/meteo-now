@@ -1,14 +1,15 @@
-import { Text, View } from 'react-native';
-
-import { s } from './Home.style.js';
 import {
   getCurrentPositionAsync,
   requestForegroundPermissionsAsync,
 } from 'expo-location';
 import { useEffect, useState } from 'react';
-import MeteoBasic from '../../components/MeteoBasic/MeteoBasic.jsx';
-import { getWeatherInterpretation } from '../../services/meteo-services.js';
 import { MeteoAPI } from '../../api/meteo.js';
+import { getWeatherInterpretation } from '../../utils/meteo.js';
+
+import { Text, View } from 'react-native';
+import MeteoBasic from '../../components/MeteoBasic/MeteoBasic.jsx';
+
+import { s } from './Home.style.js';
 
 export default function Home() {
   const [coords, setCoords] = useState(null);
