@@ -23,7 +23,7 @@ export default function HomeScreen() {
   };
 
   const navigateToForecastScreen = () => {
-    navigation.navigate('Forecast');
+    navigation.navigate('Forecast', { city, ...weather.daily });
   };
 
   return currentWeather ? (
