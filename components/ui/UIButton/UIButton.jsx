@@ -1,5 +1,5 @@
 import { TouchableOpacity } from 'react-native';
-import Txt from '../Txt/Txt';
+import Txt from '@/components/ui/Txt/Txt';
 
 export default function UIButton({ children, onPress, style }) {
   return (

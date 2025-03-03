@@ -1,8 +1,8 @@
 import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import UIButton from '../../ui/UIButton/UIButton';
-import Txt from '../../ui/Txt/Txt';
+import UIButton from '@/components/ui/UIButton/UIButton';
+import Txt from '@/components//ui/Txt/Txt';
 
 import { s } from './ForecastHeader.style.js';
 
