@@ -1,14 +1,16 @@
 import { View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { getWeatherInterpretation } from '@/utils/meteo.js';
-
-import MeteoBasic from '@/components/MeteoBasic/MeteoBasic.jsx';
-import { s } from './HomeScreen.style.js';
 import { useFetchWeather } from '@/hooks/useFetchWeather.js';
 import { useFetchCity } from '@/hooks/useFetchCity.js';
 import { useLocation } from '@/hooks/useLocation.js';
-import MeteoAdvanced from '@/components/MeteoAdvanced/MeteoAdvanced.jsx';
-import { useNavigation } from '@react-navigation/native';
+
 import Container from '@/components/ui/Container/Container.jsx';
+import MeteoAdvanced from '@/components/MeteoAdvanced/MeteoAdvanced.jsx';
+import MeteoBasic from '@/components/MeteoBasic/MeteoBasic.jsx';
+import Searchbar from "@/components/Searchbar/Searchbar";
+
+import { s } from './HomeScreen.style.js';
 
 export default function HomeScreen() {
   const navigation = useNavigation();
@@ -36,7 +38,9 @@ export default function HomeScreen() {
           onPress={navigateToForecastScreen}
         />
       </View>
-      <View style={s.searchbar}></View>
+      <View style={s.searchbar}>
+          <Searchbar/>
+      </View>
       <View style={s.meteo_advanced}>
         <MeteoAdvanced
           wind={currentWeather?.windspeed}
