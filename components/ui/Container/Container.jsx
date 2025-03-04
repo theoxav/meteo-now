@@ -2,6 +2,7 @@ import { ImageBackground } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import backgroundImg from '@/assets/background.png';
+
 import { s } from './Container.style.js';
 
 export default function Container({ children }) {

@@ -1,18 +1,21 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useEffect, useState } from 'react';
+
 import { useFetchWeather } from '@/hooks/useFetchWeather.js';
 import { useFetchCity } from '@/hooks/useFetchCity.js';
 import { useLocation } from '@/hooks/useLocation.js';
 import { useFetchCoordsByCity } from '@/hooks/useFetchCoordsByCity.js';
+import { getWeatherInterpretation } from '@/utils/meteo.js';
 
 import Container from '@/components/ui/Container/Container.jsx';
 import MeteoAdvanced from '@/components/MeteoAdvanced/MeteoAdvanced.jsx';
 import MeteoBasic from '@/components/MeteoBasic/MeteoBasic.jsx';
 import Searchbar from '@/components/Searchbar/Searchbar';
+import Loader from '@/components/ui/Loader/Loader.jsx';
+import Txt from '@/components/ui/Txt/Txt';
 
 import { s } from './HomeScreen.style.js';
-import { useEffect, useState } from 'react';
-import { getWeatherInterpretation } from '@/utils/meteo.js';
 
 export default function HomeScreen() {
   const navigation = useNavigation();
@@ -46,38 +49,40 @@ export default function HomeScreen() {
     navigation.navigate('Forecast', { city, ...weather.daily });
   };
 
+  const isLoading = !currentWeather || !city;
+
   return (
     <Container>
-      <View style={s.meteo_basic}>
-        {error ? (
-          <Text>{error}</Text>
-        ) : currentWeather ? (
-          <MeteoBasic
-            temperature={Math.round(currentWeather?.temperature)}
-            city={city}
-            interpretation={getWeatherInterpretation(
-              currentWeather?.weathercode
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <View style={s.meteo_basic}>
+            {error ? (
+              <Txt>{error}</Txt>
+            ) : (
+              <MeteoBasic
+                temperature={Math.round(currentWeather?.temperature)}
+                city={city}
+                interpretation={getWeatherInterpretation(
+                  currentWeather?.weathercode
+                )}
+                onPress={navigateToForecastScreen}
+              />
             )}
-            onPress={navigateToForecastScreen}
-          />
-        ) : (
-          <Text>Loading weather...</Text>
-        )}
-      </View>
-      <View style={s.searchbar}>
-        <Searchbar onSubmit={handleSearchSubmit} />
-      </View>
-      <View style={s.meteo_advanced}>
-        {currentWeather ? (
-          <MeteoAdvanced
-            wind={currentWeather?.windspeed}
-            dusk={getSunTime('sunset')}
-            dawn={getSunTime('sunrise')}
-          />
-        ) : (
-          <Text>Loading advanced weather...</Text>
-        )}
-      </View>
+          </View>
+          <View style={s.searchbar}>
+            <Searchbar onSubmit={handleSearchSubmit} />
+          </View>
+          <View style={s.meteo_advanced}>
+            <MeteoAdvanced
+              wind={currentWeather?.windspeed}
+              dusk={getSunTime('sunset')}
+              dawn={getSunTime('sunrise')}
+            />
+          </View>
+        </>
+      )}
     </Container>
   );
 }

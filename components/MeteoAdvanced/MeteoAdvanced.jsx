@@ -1,4 +1,5 @@
 import { View } from 'react-native';
+
 import Txt from '@/components/ui/Txt/Txt';
 
 import { s } from './MeteoAdvanced.style.js';

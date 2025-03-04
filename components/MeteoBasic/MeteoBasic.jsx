@@ -1,8 +1,9 @@
 import { Image, TouchableOpacity, View } from 'react-native';
+
+import Clock from '@/components/Clock/Clock.jsx';
 import Txt from '@/components/ui/Txt/Txt';
 
 import { s } from './MeteoBasic.style.js';
-import Clock from '@/components/Clock/Clock.jsx';
 
 export default function MeteoBasic({
   onPress,
