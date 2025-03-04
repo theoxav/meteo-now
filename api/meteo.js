@@ -48,4 +48,32 @@ export class MeteoAPI {
       throw error;
     }
   }
+
+  /**
+   * Fetches the geographical coordinates (latitude and longitude) of a given city.
+   *
+   * @param {string} city - The name of the city to retrieve coordinates for.
+   * @returns {Promise<{ lat: number, lng: number }>} - An object containing the city's latitude and longitude.
+   * @throws {Error} - Throws an error if the request fails.
+   */
+  static async fetchCoordsFromCity(city) {
+    try {
+      const response = await axios.get(
+        `${process.env.EXPO_PUBLIC_GEOCODING_API_URL}/search?name=${city}&language=fr&count=1`
+      );
+
+      if (
+        !response.data ||
+        !response.data.results ||
+        response.data.results.length === 0
+      ) {
+        return { error: `No coordinates found for city: ${city}` };
+      }
+
+      const { latitude: lat, longitude: lng } = response.data.results[0];
+      return { lat, lng };
+    } catch (error) {
+      return { error: `Error fetching coordinates for city: ${city}` };
+    }
+  }
 }
