@@ -5,10 +5,22 @@ This is a `React Native` application that allows users to get weather informatio
 ## Features
 
 - **Weather Search**: Search for weather information using a dynamic search input that fetches results from a weather API.
-- **Responsive Design**: Utilizes `React Native` components for a responsive and modern user interface.
 - **Weather Overview**: Displays an overview of the current weather conditions.
 - **Detailed Weather Cards**: Shows detailed information about the weather in a card format.
 - **Location-Based Weather**: Provides weather information based on the user's current location.
+- **7-Day Forecast**: View a detailed 7-day weather forecast.
+- **Real-Time Clock**: Displays the current time dynamically.
+- **Advanced Weather Details**: Shows additional weather details such as wind speed, sunrise, and sunset times.
+
+## Screenshots
+
+Here are some screenshots of the application:
+
+![Loader](./assets/screens/loader.png)
+
+![Home Screen](./assets/screens/homescreen.png)
+
+![Weather Details](./assets/screens/forecastscreen.png)
 
 ## Installation
 
